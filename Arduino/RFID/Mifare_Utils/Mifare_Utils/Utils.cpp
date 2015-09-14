@@ -20,6 +20,7 @@ int Utils::writeBlock(byte blockNumber, byte data[], MFRC522::MIFARE_Key *key, M
 	if (checkIfTrailer(blockNumber) == ERROR_TRAILER_BLOCK_DET)
 	{
 		Serial.println("[WARNING] - THIS IS A TRAILER BLOCK -> READ_ONLY (write denied!)");
+		Serial.println("[ABORTED]");
 		return ERROR_TRAILER_BLOCK_DET;
 	}
 
@@ -45,7 +46,8 @@ int Utils::readBlock(byte blockNumber, byte *writeBackBuffer, byte *bufferSize, 
 
 	if (checkIfTrailer(blockNumber) == ERROR_TRAILER_BLOCK_DET)
 	{
-		Serial.println("[WARNING] - THIS IS A TRAILER BLOCK -> READ_ONLY (reading!)");
+		Serial.println("[WARNING] - THIS IS A TRAILER BLOCK -> READ_ONLY");
+		Serial.println("[READING]");
 	}
 
 	status = Instance.MIFARE_Read(blockNumber, writeBackBuffer,bufferSize);
