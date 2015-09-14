@@ -59,7 +59,7 @@ void loop() {
 		Serial.println("[1] - String");
 		Serial.println("[2] - Bytes");
 		while (Serial.available() == 0);
-		int res = Serial.parseInt();
+		int res = Serial.parseInt() - '0';
 		if (res == 1)
 		{
 			isString = true;
